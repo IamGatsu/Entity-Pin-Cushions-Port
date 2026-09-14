@@ -1,0 +1,20 @@
+{
+  "mappings": {
+    "traben/entity_pin_cushions/mixin/MixinAddLayer": {
+      "<init>": "Lnet/minecraft/class_922;<init>(Lnet/minecraft/class_5617$class_5618;Lnet/minecraft/class_583;F)V"
+    },
+    "traben/entity_pin_cushions/mixin/MixinEntityRenderDispatcher": {
+      "extractEntity(Lnet/minecraft/world/entity/Entity;F)Lnet/minecraft/client/renderer/entity/state/EntityRenderState;": "Lnet/minecraft/class_898;method_72977(Lnet/minecraft/class_1297;F)Lnet/minecraft/class_10017;"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "traben/entity_pin_cushions/mixin/MixinAddLayer": {
+        "<init>": "Lnet/minecraft/class_922;<init>(Lnet/minecraft/class_5617$class_5618;Lnet/minecraft/class_583;F)V"
+      },
+      "traben/entity_pin_cushions/mixin/MixinEntityRenderDispatcher": {
+        "extractEntity(Lnet/minecraft/world/entity/Entity;F)Lnet/minecraft/client/renderer/entity/state/EntityRenderState;": "Lnet/minecraft/class_898;method_72977(Lnet/minecraft/class_1297;F)Lnet/minecraft/class_10017;"
+      }
+    }
+  }
+}

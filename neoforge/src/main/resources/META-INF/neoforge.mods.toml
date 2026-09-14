@@ -1,0 +1,32 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+#issueTrackerURL = ""
+license = "GNU LGPL 3.0"
+
+[[mods]]
+modId = "entity_pin_cushions"
+version = "${version}"
+displayName = "Entity Pin Cushions"
+authors = "Traben"
+description = '''
+Lets arrows stick into most mobs, not just players.
+'''
+logoFile = "icon.png"
+
+[[dependencies.entity_pin_cushions]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.11,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.entity_pin_cushions]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.11,)"
+ordering = "NONE"
+side = "CLIENT"
+
+
+[[mixins]]
+config = "entity_pin_cushions.mixins.json"
