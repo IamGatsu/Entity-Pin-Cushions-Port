@@ -1,0 +1,77 @@
+plugins {
+    id 'com.gradleup.shadow'
+}
+
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
+
+loom {
+    accessWidenerPath = project(":common").loom.accessWidenerPath
+}
+
+configurations {
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
+
+    // Files in this configuration will be bundled into your mod using the Shadow plugin.
+    // Don't use the `shadow` configuration from the plugin itself as it's meant for excluding files.
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+}
+
+dependencies {
+    // 26.2-Port: "implementation" statt "modImplementation" - siehe common/build.gradle.
+    implementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+
+
+    // 26.2-Port: "namedElements" existiert unter dev.architectury.loom-no-remap nicht als
+    // eigene ausgehende Konfiguration von :common (das war laesst sich am Build-Fehler
+    // "no variant with that configuration name exists" ablesen). Der Sinn von namedElements
+    // war es immer, den NICHT umbenannten (un-remapped) Jar bereitzustellen - genau das,
+    // was unter loom-no-remap ohnehin bereits die Standard-Ausgabe von :common ist, da dort
+    // gar nichts mehr remapped wird. Deshalb reicht ein normaler Projekt-Dependency ohne
+    // 'configuration:'-Parameter; Gradle nimmt dann automatisch die Default-Variante
+    // (apiElements/runtimeElements), die unter loom-no-remap identisch mit der frueheren
+    // namedElements-Ausgabe ist.
+    common(project(path: ':common')) { transitive false }
+    shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
+}
+
+processResources {
+    inputs.property 'version', project.version
+
+    filesMatching('fabric.mod.json') {
+        expand version: project.version
+    }
+}
+
+shadowJar {
+    configurations = [project.configurations.shadowBundle]
+    // 26.2-Port: shadowJar ist jetzt selbst das finale Artefakt (siehe unten), daher
+    // kein "dev-shadow"-Zwischenklassifier mehr, sondern leer.
+    archiveClassifier = ''
+}
+
+// 26.2-Port: remapJar existiert unter loom-no-remap nicht mehr (nichts zu remappen, siehe
+// Build-Fehler "Could not find method remapJar()"). shadowJar bündelt common+fabric bereits
+// zu einem fertigen Jar und wird dank leerem archiveClassifier zum finalen Build-Artefakt.
+// Die Access-Widener-Datei kommt als Ressource aus common/ automatisch mit ins Jar; Fabric
+// Loader findet sie über den "accessWidener"-Eintrag in fabric.mod.json (dort ergänzt).
+// Der normale "jar"-Task (ohne common-Code) wird umbenannt, damit er nicht mit shadowJar
+// um den gleichen Dateinamen konkurriert.
+jar {
+    archiveClassifier = 'slim'
+}
+
+tasks.named('assemble') {
+    dependsOn(shadowJar)
+}

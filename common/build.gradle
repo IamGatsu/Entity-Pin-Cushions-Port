@@ -1,0 +1,17 @@
+architectury {
+    common rootProject.enabled_platforms.split(',')
+}
+
+dependencies {
+    // We depend on Fabric Loader here to use the Fabric @Environment annotations.
+    // Do NOT use other classes from Fabric Loader.
+    // 26.2-Port: "modImplementation" existiert unter loom-no-remap nicht mehr - die
+    // "mod"-Präfix-Konfigurationen (modImplementation/modApi/...) sind Loom's
+    // Remapping-Mechanismus, der hier komplett entfällt, da nichts mehr obfuskiert/
+    // remapped werden muss. Normales "implementation" reicht.
+    implementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+
+}
+loom {
+    accessWidenerPath = file("src/main/resources/entity_pin_cushions.accesswidener")
+}
