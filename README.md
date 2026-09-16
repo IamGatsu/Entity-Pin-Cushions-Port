@@ -5,5 +5,11 @@ Current Versions:
 1.21.11, Forge/Fabric (NeoForge needs to be fixed)
 26.2, Fabric/NeoForge
 
+Changelog
+```
+16.09.2026
+- Added 2D Projectiles Mod Compatibility
+```
+
 Credits
 [Original Mod](https://modrinth.com/mod/entity-pin-cushions)
