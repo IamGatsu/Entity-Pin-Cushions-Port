@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "traben.entity_pin_cushions.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "minVersion": "0.8",
+  "client": [
+    "MixinAddLayer",
+    "MixinEntityRenderDispatcher"
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,21 @@
+pluginManagement {
+    repositories {
+        maven { url "https://maven.fabricmc.net/" }
+        maven { url "https://maven.architectury.dev/" }
+        maven { url "https://maven.neoforged.net/releases" }
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'entity_pin_cushions'
+
+include 'common'
+include 'fabric'
+include 'neoforge'
+//include 'forge' // deaktiviert für den 26.2-Port: Architectury dokumentiert für Minecraft 26.2
+// (docs.architectury.dev, Stand des Ports) nur noch Fabric + NeoForge als unterstützte
+// Ziele; das klassische Forge (files.minecraftforge.net) existiert zwar separat als
+// "Forge 26.2" (Latest 65.1.3), aber weder die Architectury-Doku noch der offizielle
+// Projekt-Generator (generate.architectury.dev) bieten dafür noch ein forge()-Target
+// unter dem neuen loom-no-remap-Toolchain. Der alte forge/-Ordner bleibt unangetastet
+// im Zip (weiterhin auf 1.21.11) als Referenz/Fallback.
