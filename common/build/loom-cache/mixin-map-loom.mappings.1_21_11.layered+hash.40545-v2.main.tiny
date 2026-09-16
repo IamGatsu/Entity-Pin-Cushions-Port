@@ -1,0 +1,3 @@
+v1	named	intermediary
+FIELD	traben/entity_pin_cushions/mixin/MixinAddLayer	Lnet/minecraft/client/model/EntityModel;	model	field_4737
+METHOD	traben/entity_pin_cushions/mixin/MixinAddLayer	(Lnet/minecraft/client/renderer/entity/layers/RenderLayer;)Z	addLayer	method_4046

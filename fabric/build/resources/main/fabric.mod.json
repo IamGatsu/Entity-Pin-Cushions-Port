@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "entity_pin_cushions",
+  "version": "1.1",
+  "name": "Entity Pin Cushions",
+  "description": "Lets arrows stick into most mobs, not just players.",
+  "authors": [
+    "Traben"
+  ],
+  "contact": {
+    "homepage": ""
+  },
+  "license": "LGPL-3.0",
+  "icon": "icon.png",
+  "environment": "client",
+  "entrypoints": {
+
+    "client": [
+      "traben.entity_pin_cushions.fabric.client.EntityPinCushionsFabricClient"
+    ]
+  },
+  "mixins": [
+    "entity_pin_cushions.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": ">=1.21.11",
+    "java": ">=21"
+  }
+}
